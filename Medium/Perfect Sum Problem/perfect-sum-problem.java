@@ -29,7 +29,10 @@ class Solution{
 
 	public int perfectSum(int arr[],int n, int sum) 
 	{ 
-	    // Your code goes here
+	    //If(arr[i-1] > 0) => dp[i][0] = dp[i-1][0]
+//else If(arr[i-1] <= 0) => dp[i][0] = dp[i-1][0] + dp[i-1][0]; and this extra term will lead to extra +1. And this extra +1 will exist whenever arr[i-1] == 0. 
+//Thus increasing our answers by no. of zeroes whenever required.
+
 	    int[][] dp = new int[n+1][sum+1];
 
         for(int i=0;i<dp.length;i++){//row
@@ -38,6 +41,7 @@ class Solution{
         for(int i=1;i<dp[0].length;i++){//col
             dp[0][i] = 0;
         }
+        //if array items contains 0 normal code wont run. so, -> %m
         //10^9 + 7
         int m = (int) 1e9+7;
         for(int i=1;i<n+1;i++){//row = n = i
