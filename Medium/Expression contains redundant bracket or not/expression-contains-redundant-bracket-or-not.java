@@ -26,31 +26,40 @@ class GFG {
 
 class Solution {
     public static int checkRedundancy(String str) {
+        // code here
         Stack<Character> s = new Stack<>();
+        
         for(int i=0;i<str.length();i++){
+            int flag = 0;
             char ch = str.charAt(i);
             if(ch==')'){
-                char top = s.peek();
-                s.pop();
-                int flag =1;
-                while(!s.isEmpty() && top!='('){
-                    if(top=='+'||top=='-'||top=='*'||top=='/'){
-                        flag =0;
-                    }
-                    top = s.peek();
-                    s.pop();
-                } 
-
-                if(flag==1){
+                if(s.peek()=='('){
                     return 1;
+                }else{
+                    while(s.peek()!='('){
+                        if(s.peek()=='+'|| s.peek() =='-' || s.peek()=='*'||s.peek()=='/'){
+                            flag=1;
+                        }
+                        s.pop();
+                    }
+                    s.pop();
+                    if(flag==0){
+                        return 1;
+                    }
                 }
-
             }else{
                 s.push(ch);
             }
+            
         }
         return 0;
-        
     }
+   
+    
+    
+    
+    
+    
+    
 }
         
